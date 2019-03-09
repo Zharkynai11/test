@@ -9,12 +9,14 @@ import {NavLink} from 'react-router-dom'
 // props.className позволяет принимать дополнительные классы для карточки по нуждам использующего компонента.
 const Card = props => {
     return <div className={"card mt-3 text-center text-sm-left " + (props.className ? props.className : "")}>
-        {props.image ? <img className="card-img-top" src={props.image}/> : null}
         {props.header || props.text || props.link ? <div className="card-body">
             {props.header ? <h5 className="card-title">{props.header}</h5> : null}
-            {props.text ? <p className="card-text">{props.text}</p> : null}
+            {props.description ? <p className="card-text">{props.description}</p> : null}
             {/* ссылка NavLink (из роутера) для навигации между "страницами" */}
             {/* принимает два параметра в одном "флаконе": link = {url, text}.  */}
+
+            <p>Срок выполнения: {props.due_date}</p>
+            <p>Планируемое время: {props.time_planned}</p>
             {props.link ? <NavLink to={props.link.url} className="btn btn-primary">
                 {props.link.text}
             </NavLink> : null}
